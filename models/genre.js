@@ -1,9 +1,9 @@
 'use strict';
 const {
-  Model, INTEGER
+  Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Genre extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,19 +11,27 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsToMany (Album, {through: 'UserAlbum'})
-      User.belongsToMany (Artst, {through: 'UserArtist'})
-      User.belongsToMany (Song, {through: 'UserSong'})
     }
   }
-  User.init({
-    userID: { type: DataTypes.INTEGER, unique: true, primaryKey:true, autoIncrement:true},
-    firstName: DataTypes.STRING,
+  Genre.init({
+    genre: {type:DataTypes.STRING, unique:true, primaryKey:true},
     lastName: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
     email: DataTypes.STRING,
-    profileImage: DataTypes.STRING,
+
+    songID: { 
+      type: DataTypes.INTEGER,
+      references: {
+        model: Song,
+        key: "songID"
+      }
+    },
+    artistID: {
+      type: DataTypes.STRING,
+      references: {
+        model: Artist,
+        key: "artistID",
+      }
+    },
     albumID: {
       type: DataTypes.INTEGER,
       references: {
@@ -31,18 +39,9 @@ module.exports = (sequelize, DataTypes) => {
         key: "albumID",
       }
     },
-
-    artistID: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Artist,
-        key: "artistID",
-      }
-    }
-
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Genre',
   });
-  return User;
+  return Genre;
 };
