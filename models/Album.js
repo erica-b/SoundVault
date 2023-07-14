@@ -2,7 +2,6 @@
 const {
   Model
 } = require('sequelize');
-const User = require('./User');
 module.exports = (sequelize, DataTypes) => {
   class Album extends Model {
     /**
@@ -12,44 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Album.belongsToMany(User, {through:"UserAlbum"})
+      Album.belongsToMany(Profile, {through:"ProfileAlbum"})
+      Album.belongsTo(Artist)
+      Album.hasMany(Song, {foreignKey: "songID"})
+      Album.belongsTo(Genre)
     }
   }
   Album.init({
-    albumID: {type: DataTypes.INTEGER, unique: true, primaryKey: true, autoIncrement:true},
+    albumID: DataTypes.INTEGER,
     albumName: DataTypes.STRING,
-    albumCover : DataTypes.STRING,
+    albumCover: DataTypes.STRING,
     albumYear: DataTypes.INTEGER,
-    artistID: {
-      type: DataTypes.STRING,
-      references: {
-        model: Artist,
-        key: "artistID",
-      }
-    },
-    genre: { 
-      type: DataTypes.STRING,
-      references: {
-        model: Genre,
-        key: "genre",
-      }
-    },
-    songID: { 
-      type: DataTypes.INTEGER,
-      references: {
-        model: Song,
-        key: "songID"
-      }
-    },
-    userID: { 
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: "userID"
-      }
-    },
-
-
+    artistID: DataTypes.INTEGER,
+    genre: DataTypes.STRING,
+    songID: DataTypes.INTEGER,
+    profileID: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Album',
