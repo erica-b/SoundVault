@@ -11,21 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Artist.hasMany(Album), {foreignKey: "albumID"}
+      Artist.hasMany(Song, { foreignKey: "songID"})
+      Artist.belongsToMany(Users, {through:"ProfileArtist"})
+      Artist.belongsTo(Genre)
     }
   }
   Artist.init({
-    artistID: {type: DataTypes.INTEGER, unique: true, primaryKey: true, autoIncrement:true},
+    artistID: DataTypes.INTEGER,
     artistName: DataTypes.STRING,
     artistImage: DataTypes.STRING,
     artistAge: DataTypes.INTEGER,
-    genre: { 
-      type: DataTypes.STRING,
-      references: 
-      {
-        model: Genre,
-        key: "genre",
-      }
-        }
+    genre: DataTypes.STRING,
+    songID: DataTypes.STRING,
+    profileID: DataTypes.INTEGER,
+    albumID: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Artist',
