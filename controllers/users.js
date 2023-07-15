@@ -106,8 +106,8 @@ const postLogin = async (req, res) => {
 
 
 module.exports = {
-  getAllUsers,
-  createUser,
+
+  registerUser,
   postCreateUser,
   getUserByID,
   editUserByID,
@@ -115,4 +115,5 @@ module.exports = {
   deleteUserByID,
   getLogin, 
   postLogin
+  
 }

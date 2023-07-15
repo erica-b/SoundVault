@@ -1,4 +1,8 @@
 'use strict';
+
+const Profile = require("./Profile");
+
+
 const models = require('../models');
 const {
   Model
