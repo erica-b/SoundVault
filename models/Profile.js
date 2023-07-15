@@ -1,4 +1,7 @@
 'use strict';
+const Album = require("./Album")
+const Artist = require("./Artist")
+
 const {
   Model, INTEGER
 } = require('sequelize');

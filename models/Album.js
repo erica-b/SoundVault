@@ -1,4 +1,6 @@
 'use strict';
+const Profile = require("./Profile");
+
 const {
   Model
 } = require('sequelize');
