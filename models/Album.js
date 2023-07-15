@@ -1,6 +1,9 @@
 'use strict';
+
 const Profile = require("./Profile");
 
+
+const models = require('../models');
 const {
   Model
 } = require('sequelize');
@@ -13,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Album.belongsToMany(Profile, {through:"ProfileAlbum"})
-      Album.belongsTo(Artist)
-      Album.hasMany(Song, {foreignKey: "songID"})
-      Album.belongsTo(Genre)
+      Album.belongsToMany(models.Profile, {through:"ProfileAlbum"})
+      Album.belongsTo(models.Artist)
+      Album.hasMany(models.Song, {foreignKey: "songID"})
+      Album.belongsTo(models.Genre)
     }
   }
   Album.init({

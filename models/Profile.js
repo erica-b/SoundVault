@@ -1,6 +1,10 @@
 'use strict';
+
 const Album = require("./Album")
 const Artist = require("./Artist")
+
+
+const models = require('../models');
 
 const {
   Model, INTEGER
@@ -14,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-     Profile.belongsToMany (Album, {through: 'ProfileAlbum'})
-     Profile.belongsToMany (Artist, {through: 'ProfileArtist'})
-     Profile.belongsToMany (Song, {through: 'ProfileSong'})
-     Profile.belongsToMany(Genre, {through: "ProfileGenre"})
+     Profile.belongsToMany (models.Album, {through: 'ProfileAlbum'})
+     Profile.belongsToMany (models.Artist, {through: 'ProfileArtist'})
+     Profile.belongsToMany (models.Song, {through: 'ProfileSong'})
+     Profile.belongsToMany(models.Genre, {through: "ProfileGenre"})
     }
   }
  Profile.init({
@@ -31,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     albumID: {
       type: DataTypes.INTEGER,
       references: {
-        model: Album,
+        model: models.Album,
         key: "albumID",
       }
     },
@@ -39,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     artistID: {
       type: DataTypes.INTEGER,
       references: {
-        model: Artist,
+        model: models.Artist,
         key: "artistID",
       }
     }
