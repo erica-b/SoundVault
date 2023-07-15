@@ -14,7 +14,8 @@ router.get('/', profileController.registerGet)
 
 router.post ("/", profileController.registerUser)
 
+
 router.get("/:id", findProfile , profileController.profileGet)
- 
+
 
 module.exports = router;
