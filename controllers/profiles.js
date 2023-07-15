@@ -1,5 +1,6 @@
 const { Profile } = require('../models');
 const bcrypt = require('bcrypt');
+const fs = require('fs')
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
@@ -19,6 +20,7 @@ const registerUser =
     try {
       let hashPassword = await bcrypt.hash(password, saltRounds);
   
+
       console.log("Original Password: ", password);
   
       console.log(password);
@@ -28,11 +30,11 @@ const registerUser =
         email,
         username,
         password: hashPassword,
-        profileImage,
+        profileImage
       });
   
       console.log("New User's auto-generated ID:", newProfile.id);
-      res.render("profile", {title: "Welcome" + username});
+      res.send("success")
     } catch (error) {
       console.log(error);
     }
