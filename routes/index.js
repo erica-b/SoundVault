@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home Page' });
 });
 
-
 /* GET create/register hard coded user */
 router.get('/create', userController.registerUser);
 
@@ -18,21 +17,21 @@ router.get('/create', userController.registerUser);
 router.post('/', userController.postCreateUser);
 
 
-/* GET EDIT user (load a template to edit a user) */
+// /* GET EDIT user (load a template to edit a user) */
 router.get('/edit/:id', userController.editUserByID);
 
-/* Edit a user */
+// /* Edit a user */
 router.post('/edit/:id', userController.postEditUserByID);
 
 
-/* Delete the user route */
+// /* Delete the user route */
 router.get("/delete:id", userController.deleteUserByID);
 
-/* Login */
+// /* Login */
 router.get('/login', userController.getLogin );
 
 
-/* POST Login */
+// /* POST Login */
 router.post('/login', userController.postLogin );
 
 
