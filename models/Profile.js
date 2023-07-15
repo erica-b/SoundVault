@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
  Profile.init({
-    profileID: { type: DataTypes.INTEGER, unique: true, primaryKey:true, autoIncrement:true},
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     username: DataTypes.STRING,

@@ -3,12 +3,13 @@
   <head>
     <title><%= title %></title>
     <!-- Include the Bootstrap partial -->
-    <% include partials/bootstrap.ejs %>
+    <%- include('./partials/bootstrap') %>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <%- include('partials/header.ejs') %>
     <h1><%= title %></h1>
-    <img src="<%= image %>" />
+    <img src="<%= profileImage %>" >
     <p><%= firstName %></p>
     <p><%= lastName %></p>
     <p><%= email %></p>
