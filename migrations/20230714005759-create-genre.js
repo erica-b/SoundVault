@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      genre: {
+      genreName: {
         type: Sequelize.STRING
       },
       songID: {
