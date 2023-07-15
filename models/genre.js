@@ -1,5 +1,5 @@
 'use strict';
-const models = require('../models');
+const models = require('.');
 const {
   Model
 } = require('sequelize');
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Genre.init({
-    genre: DataTypes.STRING,
+    genreName: DataTypes.STRING,
     songID: DataTypes.INTEGER,
     artistID: DataTypes.INTEGER,
     albumID: DataTypes.INTEGER
