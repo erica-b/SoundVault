@@ -9,9 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      albumID: {
-        type: Sequelize.INTEGER
-      },
       albumName: {
         type: Sequelize.STRING
       },
@@ -24,8 +21,8 @@ module.exports = {
       artistID: {
         type: Sequelize.INTEGER
       },
-      genre: {
-        type: Sequelize.STRING
+      genreID: {
+        type: Sequelize.INTEGER
       },
       songID: {
         type: Sequelize.INTEGER

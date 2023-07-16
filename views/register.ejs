@@ -35,9 +35,12 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" /><br /><br />
         </div>
-        <input type="file" name="profileImage" accept="image/*" />
+        <label for="profileImage">Image URL:</label>
+          <input type="url" name="profileImage" accept="image/*" />
+
+
         <br />
-        <input type="submit" value="Submit" src = "/myProfile/<%= id %>" />
+        <input type="submit" value="Submit"/>
       </form>
     </div>
   </body>

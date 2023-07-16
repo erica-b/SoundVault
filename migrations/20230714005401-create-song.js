@@ -9,14 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      songID: {
-        type: Sequelize.INTEGER
-      },
       artistID: {
         type: Sequelize.INTEGER
       },
-      genre: {
-        type: Sequelize.STRING
+      genreID: {
+        type: Sequelize.INTEGER
       },
       profileID: {
         type: Sequelize.INTEGER

@@ -13,9 +13,10 @@ const saltRounds = 10;
 
 // router.get('/', profileController.registerGet)
 
-// router.post ("/", profileController.registerUser)
 
 /* Profile Route */
 router.get("/myprofile/:id", findProfile , profileController.profileGet)
+
+router.get("/:id", findProfile , profileController.profileGet)
 
 module.exports = router;
