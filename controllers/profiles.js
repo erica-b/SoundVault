@@ -54,9 +54,6 @@ const profileGet = (req,res) => {
   });
 }
 
-
-
-
 module.exports = {
 
   registerUser,
