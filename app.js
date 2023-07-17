@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const sequelize = require("./config/database")
+const session = require("express-session")
 require('dotenv').config()
 // console.log(process.env)
 var indexRouter = require('./routes/index');
@@ -29,6 +30,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Session Handling
+
+app.use(session({
+  secret: 'secret',  // Replace with your own secret
+  resave: false,
+  saveUninitialized: true,
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -38,6 +48,8 @@ app.use('/profiles', profilesRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
