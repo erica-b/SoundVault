@@ -14,9 +14,10 @@ try {
     console.log(error)
 }
     if (decoded) {
+    
         next()
     } else {
-        res.redirect('/')
+        res.render("login" , {title: "You must login to view your account"})
     }
 }
 module.exports = {
