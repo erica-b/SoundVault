@@ -33,7 +33,7 @@ const scrapeAlbumData = async () => {
     albums.push({
       albumName,
       albumCover,
-      albumYear: '2020', // Set the album year as '1970'
+      albumYear: 2020, // Set the album year as '1970'
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -42,6 +42,7 @@ const scrapeAlbumData = async () => {
   console.log('Scraped albums:', albums);
 
   return albums;
+
 };
 
 // Generate seeder file content
