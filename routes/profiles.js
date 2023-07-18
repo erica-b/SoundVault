@@ -25,49 +25,15 @@ router.post('/', profileController.registerUser)
 router.get("/:id", authCheck ,findProfile , profileController.profileGet)
 
 
-// Handle the creation of the login token 
+
 
 
 // renders the login ejs template
-router.get("/login", async (req, res) => {
-    res.render("login", { title: "Login!" });
-  });
+router.get("/login", profileController.loginGet)
 
   // Post route to handle the user login
 
-  router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-  
-    console.log(username, password);
-  
-    // check if the username exists in db
-  
-    const user = await Profile.findOne({ where: { username } });
-    
-    if (user == null) {
-        res.render("login", { title: "Login", error: "User not Found" });
-    } else {
-        // Load the hash from password db
-        req.session.profileID = user.id
-        console.log(password, user.password);
-        const hashPassword = user.password;
-        await bcrypt.compare(password, hashPassword, function (err, result) {
-        console.log(result);
-  
-        if (result) {
-          const token = jwt.sign({foo:'bar'}, 'superSecretPrivateKey', {expiresIn: "1h"})
-          console.log(token)
-          res.cookie("token", token)
-          res.redirect("/");
-        } else {
-          res.render("login", {
-            title: "Login",
-            error: "Passwords do not match",
-          });
-        }
-      });
-    }
-  });
+  router.post("/login", profileController.loginPost)
 
 
 
