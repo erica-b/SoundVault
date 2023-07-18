@@ -12,6 +12,8 @@ var profilesRouter = require('./routes/profiles');
 
 var app = express();
 
+
+
 // database setup
 
 sequelize.sync()
