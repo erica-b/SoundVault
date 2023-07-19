@@ -15,17 +15,17 @@ module.exports = {
       albumCover: {
         type: Sequelize.STRING
       },
-      albumYear: {
-        type: Sequelize.INTEGER
+      albumDate: {
+        type: Sequelize.STRING
       },
       artistID: {
         type: Sequelize.INTEGER
       },
-      genreID: {
-        type: Sequelize.INTEGER
+      genre: {
+        type: Sequelize.STRING
       },
-      songID: {
-        type: Sequelize.INTEGER
+      songList: {
+        type: Sequelize.STRING(1234)
       },
       profileID: {
         type: Sequelize.INTEGER

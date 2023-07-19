@@ -7,7 +7,7 @@ const Artist = require("./Artist")
 const models = require('../models');
 
 const {
-  Model, INTEGER
+  Model, 
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
      Profile.belongsToMany (models.Album, {through: 'ProfileAlbum'})
      Profile.belongsToMany (models.Artist, {through: 'ProfileArtist'})
      Profile.belongsToMany (models.Song, {through: 'ProfileSong'})
-     Profile.belongsToMany(models.Genre, {through: "ProfileGenre"})
     }
   }
  Profile.init({
@@ -32,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     profileImage: DataTypes.STRING,
     albumID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       references: {
         model: models.Album,
         key: "id",
@@ -40,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     artistID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       references: {
         model: models.Artist,
         key: "id",
