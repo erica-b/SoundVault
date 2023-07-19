@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
+
+/* Pointing to each controller file */
 const indexController = require('../controllers/index');
 const albumController = require('../controllers/album');
 const artistController = require('../controllers/artist');
 const genreController = require('../controllers/genre');
 const songController = require('../controllers/song');
+
+
+/* ROUTES: */
 
 /* Homepage Router */
  // get homePage ejs template at this route url
@@ -26,9 +31,6 @@ const songController = require('../controllers/song');
   /* Song Router */
  // get song ejs template at this route url
  router.get('/song', songController.songGet)
-
-
-
 
 
  

@@ -11,6 +11,8 @@ const multer = require('multer');
 const { authCheck } = require('../middleware/authCheck');
 const upload = multer({ dest: 'uploads/' });
 const saltRounds = 10;
+const editController = require('../controllers/edit');
+const deleteController = require('../controllers/delete');
 
 
 router.get('/', profileController.registerGet)
@@ -26,8 +28,6 @@ router.get("/:id", authCheck ,findProfile , profileController.profileGet)
 
 
 
-
-
 // renders the login ejs template
 router.get("/login", profileController.loginGet)
 
@@ -35,6 +35,17 @@ router.get("/login", profileController.loginGet)
 
   router.post("/login", profileController.loginPost)
 
+
+  /* GET - load a template to EDIT a user */
+router.get('/edit/:id', editController.editUserByID);
+
+
+/* Edit the user */
+router.post('/edit/:id', editController.postEditUserByID);
+
+
+/* Delete the user route */
+router.get("/delete/:id", deleteController.deleteUserByID);
 
 
 module.exports = router;
