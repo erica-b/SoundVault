@@ -15,14 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       Song.belongsToMany (models.Profile, {through: 'ProfileSong'})
       Song.belongsTo(models.Album)
       Song.belongsTo(models.Artist)
-      Song.belongsTo(models.Genre)
     }
   }
   Song.init({
     artistID: DataTypes.INTEGER,
-    genreID: DataTypes.INTEGER,
     profileID: DataTypes.INTEGER,
-    albumID: DataTypes.INTEGER
+    albumID: DataTypes.INTEGER,
+    songName: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Song',

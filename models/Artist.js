@@ -15,14 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       Artist.hasMany(models.Album), {foreignKey: "albumID"}
       Artist.hasMany(models.Song, { foreignKey: "songID"})
       // Artist.belongsToMany(models.Users, {through:"ProfileArtist"})
-      Artist.belongsTo(models.Genre)
     }
   }
   Artist.init({
     artistName: DataTypes.STRING,
     artistImage: DataTypes.STRING,
     artistAge: DataTypes.INTEGER,
-    genreID: DataTypes.INTEGER,
     songID: DataTypes.INTEGER,
     profileID: DataTypes.INTEGER,
     albumID: DataTypes.INTEGER
