@@ -1,19 +1,27 @@
 <header class="d-flex justify-content-center py-3">
   <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a href="/" class="nav-link active" aria-current="page">Home</a>
+    <li class="nav-item <%= title === 'Home' ? 'active' : '' %>">
+      <a href="/" class="nav-link <%= title === 'Home' ? 'active' : '' %>" aria-current="page">Home</a>
     </li>
 
-    <li class="nav-item"><a href="/genre" class="nav-link">Genres</a></li>
+    <li class="nav-item <%= title === 'Genres' ? 'active' : '' %>">
+      <a href="/genre" class="nav-link <%= title === 'Genres' ? 'active' : '' %>">Genres</a>
+    </li>
 
-    <li class="nav-item"><a href="/artist" class="nav-link">Artists</a></li>
+    <li class="nav-item <%= title === 'Artists' ? 'active' : '' %>">
+      <a href="/artist" class="nav-link <%= title === 'Artists' ? 'active' : '' %>">Artists</a>
+    </li>
 
-    <li class="nav-item"><a href="/album" class="nav-link">Albums</a></li>
+    <li class="nav-item <%= title === 'Albums' ? 'active' : '' %>">
+      <a href="/album" class="nav-link <%= title === 'Albums' ? 'active' : '' %>">Albums</a>
+    </li>
 
-    <li class="nav-item"><a href="/song" class="nav-link">Songs</a></li>
+    <li class="nav-item <%= title === 'Songs' ? 'active' : '' %>">
+      <a href="/song" class="nav-link <%= title === 'Songs' ? 'active' : '' %>">Songs</a>
+    </li>
 
-    <li class="nav-item">
-      <a href="/profiles/5" class="nav-link">My Profile</a>
+    <li class="nav-item <%= title === 'My Profile' ? 'active' : '' %>">
+      <a href="/profiles/5" class="nav-link <%= title === 'My Profile' ? 'active' : '' %>">My Profile</a>
     </li>
   </ul>
 </header>
