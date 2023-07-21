@@ -44,10 +44,7 @@ const registerUser =
 
 const profileGet = (req,res) => {
 
-  if (!req.session.profileID) {
-    // User is not logged in, redirect to login page
-    res.redirect('/login');
-  }else {
+ 
 
   const { firstName, lastName, email, profileImage, id, username } = req.profile;
   console.log (firstName, lastName, email, profileImage )
@@ -62,7 +59,7 @@ const profileGet = (req,res) => {
     id,
     profileImage,
   });
-}
+
 }
 
 
@@ -96,7 +93,7 @@ const loginPost = async (req, res) => {
       console.log(result);
 
       if (result) {
-        const token = jwt.sign({foo:'bar'}, 'superSecretPrivateKey', {expiresIn: "1h"})
+        const token = jwt.sign({foo: req.session.profileID}, 'superSecretPrivateKey', {expiresIn: "1h"})
         console.log(token)
         res.cookie("token", token)
         res.redirect("/");
