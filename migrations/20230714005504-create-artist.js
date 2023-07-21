@@ -18,9 +18,6 @@ module.exports = {
       artistAge: {
         type: Sequelize.INTEGER
       },
-      songID: {
-        type: Sequelize.INTEGER
-      },
       profileID: {
         type: Sequelize.INTEGER
       },

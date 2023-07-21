@@ -9,7 +9,6 @@ module.exports = {
     artistName: 'test Artist Name',
     artistImage: 'test Artist image',
     artistAge: 27,
-    songID: 1,
     profileID: 1,
     createdAt: new Date(),
     updatedAt: new Date() 
