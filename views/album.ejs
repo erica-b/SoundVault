@@ -8,6 +8,8 @@
     <!-- Include the Font Awesome CSS for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+   
+
     <style>
       .card-title {
         font-weight: bold;
@@ -43,7 +45,7 @@
               <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profiles">Favorites</a>
+              <a class="nav-link" href="/album/favorites">Favorites</a>
             </li>
           </ul>
         </div>
@@ -66,11 +68,17 @@
                   <% trackList.forEach(track => { %>
                     <li class="list-group-item">
                       <%= track %>
-                      <i class="fas fa-heart heart-icon" data-track="<%= track %>" onclick="handleFavorite(this)"></i>
+                      <i class="fas fa-heart heart-icon" onclick="handleFavorite(this)"></i>
                     </li>
                   <% }) %>
                 </ul>
-                <button class="btn btn-primary mt-3"><i class="fas fa-heart"></i> Favorite</button>
+                <form action="/album/favorites" method="POST">
+                  <input name="albumID"  type= "hidden" value="<%= album.dataValues.id %>">
+                  <input type="hidden" name="profileID" value="1"> <!-- Replace with the actual user's profile ID -->
+                  <button type="submit" class="btn btn-primary mt-3">
+                    <i class="fas fa-heart"></i> Favorite
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -79,15 +87,41 @@
     </div>
 
     <!-- Include the Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Include your custom JavaScript -->
     <script>
       // Function to handle the favorite button click
-      function handleFavorite(element) {
+      async function handleFavorite(element, albumID, profileID) {
         element.classList.toggle('active');
+
+        const form = document.getElementById(`favoriteForm${albumID}`);
+        //form has a hidden field that looks for the id of the profile id of the user that is currently logged into the site
+        form.profileID.value = profileID;
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+
+          if (response.ok) {
+            // Success, show a success popup or message
+            alert('Album added to favorites successfully!');
+          } else if (response.status === 409) {
+            // Album already in favorites, show an error popup or message
+            alert('Album already in favorites.');
+          } else {
+            // Error occurred, show an error popup or message
+            alert('Error while adding album to favorites. Please try again later.');
+          }
+        } catch (error) {
+          console.error('Error while adding album to favorites:', error);
+          // Show an error popup or message
+          alert('Error while adding album to favorites. Please try again later.');
+        }
       }
     </script>
-  </body>
+
+
+</body>
 </html>
 
 
