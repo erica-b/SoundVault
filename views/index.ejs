@@ -1,17 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <!-- Include the Bootstrap partial -->
-    <%- include('./partials/bootstrap') %>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <%- include('partials/header.ejs') %>
+<head>
+  <title><%= title %></title>
+  <!-- Include the Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+
+  <!-- Include the Font Awesome CSS for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .jumbotron {
+      background-color: #333;
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .jumbotron h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #ff6600;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .jumbotron p {
+      font-size: 1.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-lg {
+      font-size: 1.25rem;
+      padding: 12px 40px;
+    }
+
+    .card {
+      background-color: #444;
+      color: #fff;
+      border: none;
+    }
+
+    .card .card-title {
+      color: #ff6600;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card .card-text {
+      color: #ccc;
+    }
+
+    .card .fa-4x {
+      color: #ff6600;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/header.ejs') %>
+
+  <div class="jumbotron jumbotron-fluid text-center mb-0">
     <div class="container">
-      
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+      <h1 class="display-4">Welcome to <span style="color: #ff6600;"><%= title %></span></h1>
+      <p class="lead">A place to discover and save your favorite Songs, Artists, and Albums!</p>
+      <div class="d-flex justify-content-center">
+        <a href="/profiles" class="btn btn-lg btn-light mr-2">Create an Account</a>
+        <a href="/profiles/login" class="btn btn-lg btn-light">Log In</a>
+      </div>
     </div>
-  </body>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <i class="fas fa-music fa-4x mb-3"></i>
+            <h5 class="card-title">Discover Songs</h5>
+            <p class="card-text">Explore a vast collection of songs from various genres and artists.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <i class="fas fa-user fa-4x mb-3"></i>
+            <h5 class="card-title">Create Your Profile</h5>
+            <p class="card-text">Sign up and create a personalized profile to keep track of your favorites.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <i class="fas fa-heart fa-4x mb-3"></i>
+            <h5 class="card-title">Save Favorites</h5>
+            <p class="card-text">Add your favorite songs, artists, and albums to your profile for easy access.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include the Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

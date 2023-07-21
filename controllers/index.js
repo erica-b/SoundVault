@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 const homepageGet = (req, res) => {
-    res.render('index', {title: "Welcome to our cool site"})
+    res.render('index', {title: "Rhythm Retreat"})
   }
 
   module.exports = {

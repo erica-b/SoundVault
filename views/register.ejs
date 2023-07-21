@@ -1,47 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <%- include('./partials/bootstrap') %>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <%- include('partials/header.ejs') %> 
-    <% if (typeof error !== 'undefined') {
-    %>
+<head>
+  <title><%= title %></title>
+  <%- include('./partials/bootstrap') %>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    body {
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ff6600;
+    }
+
+    label {
+      color: #ff6600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="url"] {
+      background-color: #4d4d4d;
+      border: none;
+      color: #fff;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="url"]:focus {
+      outline: none;
+      box-shadow: 0 0 5px #ff6600;
+    }
+
+    input[type="submit"] {
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #ff5722;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/header.ejs') %> 
+  <% if (typeof error !== 'undefined') { %>
     <p class="error" style="color: red"><%= error %></p>
-    <% } %>
-    <div class="container">
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
-      <form action="/profiles" method="post">
-        <div class="form-group">
-          <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" /><br /><br />
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" /><br /><br />
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="text" id="email" name="email" /><br /><br />
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" /><br /><br />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" /><br /><br />
-        </div>
+  <% } %>
+  <div class="container">
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form action="/profiles" method="post">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" />
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <div class="form-group">
         <label for="profileImage">Image URL:</label>
-          <input type="url" name="profileImage" accept="image/*" />
-
-
-        <br />
-        <input type="submit" value="Submit"/>
-      </form>
-    </div>
-  </body>
+        <input type="url" name="profileImage" accept="image/*" />
+      </div>
+      <input type="submit" value="Submit"/>
+    </form>
+  </div>
+</body>
 </html>

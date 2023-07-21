@@ -7,7 +7,8 @@ const saltRounds = 10;
 //Handles the rendering of our template to allow for the creation of a new user
 
 const registerGet = (req, res) => {
-  res.render('register', {title: "Create an Account"})
+  const userId = req.user ? req.user.id : null;
+  res.render('register', {title: "Create an Account", userId})
 }
 
 // Allows for the creation of a new user and pushes it up to the profile table
