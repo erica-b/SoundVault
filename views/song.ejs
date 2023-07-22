@@ -2,51 +2,74 @@
 <html>
   <head>
     <title><%= title %></title>
-    <!-- Include the Bootstrap partial -->
-    <%- include('./partials/bootstrap') %>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- Include the Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+
+    <!-- Include the Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+   
+
+    <style>
+      .card-title {
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 0;
+      }
+
+      .heart-icon {
+        color: #ccc;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+
+      .heart-icon.active {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <%- include('partials/header.ejs') %>
-    <div class="container">
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">My Music App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/album/favorites">Favorites</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Song Cards -->
+    <div class="container mt-5">
+      <h1 class="text-center mb-4"><%= title %></h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% songs.forEach(song => { %>
+          <div class="col">
+            <div class="card shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title mb-3"><%= song.dataValues.songName %></h5>
+              
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
     </div>
 
-    <div class="container row">
-      <div class="card" style="width: 18rem">
-        <img class="card-img-top" src="..." alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <img class="card-img-top" src="..." alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <img class="card-img-top" src="..." alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </body>
+
+
+</body>
 </html>
