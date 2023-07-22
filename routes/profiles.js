@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const session = require("express-session")
 const multer = require('multer');
-const { authCheck } = require('../middleware/authCheck');
+const  authCheck  = require('../middleware/authCheck');
 const upload = multer({ dest: 'uploads/' });
 const saltRounds = 10;
 const editController = require('../controllers/edit');
@@ -24,7 +24,7 @@ router.post('/', profileController.registerUser)
 // Running a check to see if they have the jwt token before they are able to view the account
 
 // Still need to do somethign with the route so that the appropriate id is passed to the url that matches the user that was logged in
-router.get("/:id", authCheck ,findProfile , profileController.profileGet)
+router.get("/user/:id",findProfile.findProfile , profileController.profileGet)
 
 
 

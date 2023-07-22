@@ -35,11 +35,6 @@ app.use(cookieParser());
 
 //Session Handling
 
-app.use(session({
-  secret: 'secret',  // Replace with your own secret
-  resave: false,
-  saveUninitialized: true,
-}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const {authCheck} = require("../middleware/authCheck")
+const authCheck = require("../middleware/authCheck")
+const findProfile = require ("../middleware/findProfile")
 
 /* Pointing to each controller file */
 const indexController = require('../controllers/index');
@@ -18,9 +19,9 @@ const songController = require('../controllers/song');
 
  /* Album Router */
  // get album ejs template at this route url
- router.get('/album', albumController.albumGet)
+ router.get('/album', authCheck.authCheck ,albumController.albumGet)
 
-router.get('/album/favorites', authCheck ,albumController.albumFavsGet)
+router.get('/album/favorites', authCheck.authCheck ,albumController.albumFavsGet)
  router.post('/album/favorites', albumController.albumFavsPost)
 
  /* Artist Router */
