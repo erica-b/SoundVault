@@ -8,8 +8,6 @@
     <!-- Include the Font Awesome CSS for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-   
-
     <style>
       .card-title {
         font-weight: bold;
@@ -32,6 +30,12 @@
   </head>
   <body>
     <%- include('partials/header.ejs') %>
+    
+    <!-- Notification -->
+    <div id="notification" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+      <strong id="notification-message"></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
@@ -87,15 +91,24 @@
     </div>
 
     <!-- Include the Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+      function showAlert(message, type='success') {
+        const notificationElement = document.getElementById('notification');
+        const notificationMessageElement = document.getElementById('notification-message');
+        
+        notificationMessageElement.textContent = message;
+        notificationElement.classList.remove('alert-success', 'alert-danger');
+        notificationElement.classList.add(`alert-${type}`);
+        notificationElement.style.display = 'block';
+      }
+      
       // Function to handle the favorite button click
-      async function handleFavorite(element, albumID, profileID) {
-        element.classList.toggle('active');
+      async function handleFavorite(event, albumID) {
+        event.preventDefault(); // Prevent the default form submission
 
         const form = document.getElementById(`favoriteForm${albumID}`);
-        //form has a hidden field that looks for the id of the profile id of the user that is currently logged into the site
-        form.profileID.value = profileID;
-        
+
         try {
           const response = await fetch(form.action, {
             method: 'POST',
@@ -103,25 +116,22 @@
           });
 
           if (response.ok) {
-            // Success, show a success popup or message
-            alert('Album added to favorites successfully!');
+            showAlert('Album added to favorites successfully!');
           } else if (response.status === 409) {
-            // Album already in favorites, show an error popup or message
-            alert('Album already in favorites.');
+            showAlert('Album already in favorites.', 'danger');
           } else {
-            // Error occurred, show an error popup or message
-            alert('Error while adding album to favorites. Please try again later.');
+            showAlert('Error while adding album to favorites. Please try again later.', 'danger');
           }
         } catch (error) {
           console.error('Error while adding album to favorites:', error);
-          // Show an error popup or message
-          alert('Error while adding album to favorites. Please try again later.');
+          showAlert('Error while adding album to favorites. Please try again later.', 'danger');
         }
       }
     </script>
-
-
-</body>
+   
+      </div>
+    </div>
+  </body>
 </html>
 
 
