@@ -1,20 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style>
+    body {
+      background-color: #f8f8f8;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      border: 1px solid #ddd;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #ff5722;
+    }
+    .go-back-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .go-back-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .go-back-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <div class="container form-container">
     <form action="/edit/<%= id %>" method="post">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" value="<%= firstName %>"><br><br>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" value="<%= lastName %>"><br><br>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="<%= email %>"><br><br>
-        <input type="submit" value="Submit">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" value="<%= firstName %>"><br><br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" value="<%= lastName %>"><br><br>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" value="<%= email %>"><br><br>
+      <input type="submit" value="Submit">
     </form>
-  </body>
+    <div class="go-back-container">
+      <button class="go-back-btn" onclick="window.location.href = '/profiles/user/3';">Go Back</button>
+    </div>
+  </div>
+</body>
 </html>

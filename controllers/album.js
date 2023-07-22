@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const albumGet = async (req, res) => {
   const albums = await Album.findAll({attributes: { exclude: ['ArtistId'] }})
-    res.render('album', {title: "Albums", albums})
+  const userProfileID = req.user.id;
+      console.log('User Profile ID:', userProfileID);
+    res.render('album', {title: "Albums", albums, userProfileID})
   }
 
   const albumFavsGet = async (req, res) => {
@@ -34,6 +36,7 @@ const albumGet = async (req, res) => {
       res.render('favAlbums', {
         title: 'Favorite Albums',
         favoriteAlbums: userProfile.favoriteAlbums,
+        profileID: userProfileID
       });
     } catch (error) {
       console.error('Error while retrieving favorite albums:', error);

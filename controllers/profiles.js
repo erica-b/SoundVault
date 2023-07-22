@@ -47,12 +47,12 @@ const profileGet = (req,res) => {
 
  
 
-  const { firstName, lastName, email, profileImage, id, username } = req.profile;
+  const { firstName, lastName, email, profileImage, id, username } = req.user;
   console.log (firstName, lastName, email, profileImage )
 
   res.render("profile", {
     title: "User Profile",
-    profileID: req.session.profileID,
+    profileID: req.user.id,
     username,
     firstName,
     lastName,
@@ -87,14 +87,14 @@ const loginPost = async (req, res) => {
       res.render("login", { title: "Login", error: "User not Found" });
   } else {
       // Load the hash from password db
-      req.session.profileID = user.id
       console.log(password, user.password);
       const hashPassword = user.password;
+      const profileID = user.id
       await bcrypt.compare(password, hashPassword, function (err, result) {
-      console.log(result);
+        console.log(result);
 
       if (result) {
-        const token = jwt.sign({foo: req.session.profileID}, 'superSecretPrivateKey', {expiresIn: "1h"})
+        const token = jwt.sign({foo: profileID}, 'superSecretPrivateKey', {expiresIn: "1h"})
         console.log(token)
         res.cookie("token", token)
         res.redirect("/");

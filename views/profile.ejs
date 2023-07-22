@@ -5,15 +5,70 @@
     <!-- Include the Bootstrap partial -->
     <%- include('./partials/bootstrap') %>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      body {
+        background-color: #f8f8f8;
+        font-family: 'Arial', sans-serif;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-top: 30px;
+      }
+
+      .profile-image {
+        max-width: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .profile-info {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+      }
+
+      .profile-info p {
+        margin-bottom: 5px;
+      }
+
+      .profile-buttons {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .profile-buttons button {
+        background-color: #ff6600;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .profile-buttons button:hover {
+        background-color: #ff5722;
+      }
+    </style>
   </head>
   <body>
     <%- include('partials/header.ejs') %>
-    <h1><%= title %></h1>
-    <img src="<%= profileImage %>" >
-    <p><%= firstName %></p>
-    <p><%= lastName %></p>
-    <p><%= email %></p>
-    <button onclick="window.location.href = 'profiles/edit/5';">Edit</button>
-    <button>Delete</button>
+    <div class="container">
+      <h1 class="text-center"><%= title %></h1>
+      <img src="<%= profileImage %>" class="profile-image" alt="Profile Image">
+      <div class="profile-info">
+        <p><strong>First Name:</strong> <%= firstName %></p>
+        <p><strong>Last Name:</strong> <%= lastName %></p>
+        <p><strong>Email:</strong> <%= email %></p>
+      </div>
+      <div class="profile-buttons">
+        <button onclick="window.location.href = '/profiles/edit/3';">Edit</button>
+        <button onclick="window.location.href = '/profiles/delete/3';">Delete</button>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,13 +1,13 @@
 const {Profile} = require("../models")
 
-const findProfile = async (req,res,next) => {
-  const profile = await Profile.findByPk(req.session.profileID)
+
+  const findProfile = async (req,res,next) => {
     console.log("Find single user by pk in db")
     const id = req.params.id;
-    req.profile = await Profile.findByPk(id)
-  console.log(req.profile);
+    req.user = await Profile.findByPk(id)
+  console.log(req.user);
     next()
 }
 
 
-module.exports = findProfile
+module.exports = {findProfile}
