@@ -35,8 +35,10 @@ router.get('/album/favorites', authCheck.authCheck ,albumController.albumFavsGet
 
   /* Song Router */
  // get song ejs template at this route url
- router.get('/song', songController.songGet)
+ router.get('/song', authCheck.authCheck, songController.songGet)
+ // post song from search bar
+ router.post('/song/search', songController.songPost)
 
 
- 
+
 module.exports = router;
