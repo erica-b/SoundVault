@@ -86,6 +86,46 @@
       </div>
     </nav>
 
+<!-- Song Search Bar from Bootstrap -->
+<!-- <div class="input-group m-3 p-5">
+  <input type="text" class="form-control" id="textBox" placeholder="Search for a song" aria-label="Search for a song" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" id="songSearchBarButton" type="button">Search</button>
+  </div>
+</div> -->
+
+
+<!-- Search Form -->
+<form action="/song/search" method="post">
+  <div class="form-group m-3 p-5">
+    <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for a song">
+    <div class="form-group">
+      <input type="submit" value="submit" class="btn btn-primary btn-block"/>
+    </div>
+  </div>
+</form>
+
+<!-- Search Form Error Message (the song name was logging as an empty array in the console log)-->
+<% if (songs.length === 0) { %>
+  <div class="text-center error mb-4">No song matches.</div>
+ <% } %>
+
+
+<!--  Search Results JavaScript -->
+<!-- <script> -->
+<!-- // const songSearchBarResult = document.getElementById("textBox");
+
+// const searchResult = songSearchBarResult.value;
+
+// const songSearchBarButton = document.getElementById("songSearchBarButton");
+
+// songSearchBarButton.onclick = function() {
+//   console.log(searchResult);
+// } -->
+
+<!-- </script> -->
+
+
     <!-- Song Cards -->
     <div class="container mt-5">
       <h1 class="text-center mb-4"><%= title %></h1>

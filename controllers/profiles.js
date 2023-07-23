@@ -72,7 +72,7 @@ const loginGet = async (req, res) => {
 }
 
 
-// Handling the login poriton of the user
+// Handling the login portion of the user
 
 const loginPost = async (req, res) => {
   const { username, password } = req.body;

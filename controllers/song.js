@@ -9,9 +9,28 @@ const songGet = async (req, res) => {
     model: Album,
     attributes: ['albumCover', 'genre']
   }})
-  
     res.render('song', {title: "My Favorite Songs", songs})
   }
+
+
+  const songPost = async (req, res) => {
+    const { textbox } = req.body;
+    const songs = await Song.findAll({where: {
+      songName: textbox
+    },
+    include: {
+      model: Album,
+      attributes: ['albumCover', 'genre']
+    }})
+    res.render('song', {title: "My Favorite Songs", songs})
+  }
+
+  // const songSearch = async (req, res) => {
+  //   const songSearchResult = req.
+  //   const song = await Song.findAll({where: {
+  //     songName: 
+  //   }})
+  // }
 
   // const songFavsGet = async (req, res) => {
   //   try {
@@ -105,6 +124,7 @@ const songGet = async (req, res) => {
 // }
 module.exports = {
   songGet,
+  songPost
   // songFavsPost,
   // songFavsGet
 }
