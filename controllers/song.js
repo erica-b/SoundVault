@@ -4,7 +4,12 @@ const jwt = require('jsonwebtoken');
 
 
 const songGet = async (req, res) => {
-  const songs = await Song.findAll({attributes: { exclude: ['ArtistId'] }})
+  const songs = await Song.findAll({attributes: { exclude: ['ArtistId'] },
+  include: {
+    model: Album,
+    attributes: ['albumCover', 'genre']
+  }})
+  
     res.render('song', {title: "My Favorite Songs", songs})
   }
 

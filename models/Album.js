@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'profileID',
       });
       Album.belongsTo(models.Artist, { foreignKey: 'id' })
-      Album.hasMany(models.Song, { foreignKey: 'id' })
+      Album.hasMany(models.Song, { foreignKey: 'albumID' })
     }
   }
   Album.init({

@@ -3,41 +3,79 @@
   <head>
     <title><%= title %></title>
     <!-- Include the Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" />
 
     <!-- Include the Font Awesome CSS for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <style>
+      /* Existing styles */
+      body {
+        background-color: #212529;
+        color: #fd7e14;
+      }
+      .card {
+        border-radius: 15px;
+        border: none;
+      }
+      .img-container {
+        display: flex;
+        justify-content: center;
+      }
+      .card-img-top {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: auto;
+      }
       .card-title {
-        font-weight: bold;
-        color: #333;
+        border: 2px solid #fd7e14;
+        padding: 10px;
+        margin: 15px;
+        border-radius: 15px;
         text-align: center;
-        text-transform: uppercase;
-        margin-bottom: 0;
+        font-size: 20px;
+        background-color: #212529;
+        color: #fd7e14;
       }
-
-      .heart-icon {
-        color: #ccc;
-        transition: color 0.3s;
-        cursor: pointer;
+      .card-subtitle {
+        border: 2px solid #fd7e14;
+        padding: 10px;
+        margin: 15px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #fd7e14;
+        color: #212529;
       }
-
-      .heart-icon.active {
-        color: red;
+      .card-text {
+        text-align: center;
+      }
+      .favorite-button {
+        width: 100%;
+        background-color: #343a40;
+        color: #f8f9fa;
+        border-color: #fd7e14;
+        transition: all 0.3s ease;
+      }
+      .favorite-button:hover, .favorite-button:active {
+        background-color: #fd7e14;
+        color: #212529;
+      }
+      .track-list {
+        background-color: #343a40;
+        color: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 1em;
+        padding: 1em;
       }
     </style>
   </head>
   <body>
     <%- include('partials/header.ejs') %>
     
-    <!-- Notification -->
-    <div id="notification" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-      <strong id="notification-message"></strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="#">My Music App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,23 +101,33 @@
         <% albums.forEach(album => { %>
           <div class="col">
             <div class="card shadow-sm h-100">
-              <img src="<%= album.dataValues.albumCover || 'https://placekitten.com/200/200' %>" class="card-img-top" alt="Album Cover">
+              <div class="img-container">
+                <img src="<%= album.dataValues.albumCover || 'https://placekitten.com/200/200' %>" class="card-img-top" alt="Album Cover">
+              </div>
               <div class="card-body">
                 <h5 class="card-title mb-3"><%= album.dataValues.albumName %></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Genre: <%= album.dataValues.genre %></h6>
                 <p class="card-text">Release Year: <%= album.dataValues.albumDate %></p>
-                <ul class="list-group">
-                  <% const trackList = album.songList.split(',').map(track => track.trim()); %>
-                  <% trackList.forEach(track => { %>
-                    <li class="list-group-item">
-                      <%= track %>
-                      <i class="fas fa-heart heart-icon" onclick="handleFavorite(this)"></i>
-                    </li>
-                  <% }) %>
-                </ul>
-                <form action="/album/favorites" method="POST">
+
+                <!-- Collapsible Track List -->
+                <button class="btn favorite-button" type="button" data-bs-toggle="collapse" data-bs-target="#trackList<%= album.dataValues.id %>" aria-expanded="false" aria-controls="trackList<%= album.dataValues.id %>">
+                  View Tracks
+                </button>
+                <div class="collapse track-list" id="trackList<%= album.dataValues.id %>">
+                  <ul class="list-group">
+                    <% const trackList = album.songList.split(',').map(track => track.trim()); %>
+                    <% trackList.forEach(track => { %>
+                      <li class="list-group-item">
+                        <%= track %>
+                        <i class="fas fa-heart heart-icon" onclick="handleFavorite(this)"></i>
+                      </li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <form action="/album/favorites" method="POST" class="mt-3">
                   <input name="albumID"  type= "hidden" value="<%= album.dataValues.id %>">
                   <input type="hidden" name="profileID" value="<%= userProfileID %>"> <!-- Replace with the actual user's profile ID -->
-                  <button type="submit" class="btn btn-primary mt-3">
+                  <button type="submit" class="btn favorite-button">
                     <i class="fas fa-heart"></i> Favorite
                   </button>
                 </form>
@@ -90,19 +138,16 @@
       </div>
     </div>
 
-    <!-- Include the Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+  
+
+    <!-- Include the Bootstrap JS and Popper.js library -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+    <!-- Include your custom JS -->
+    <!-- Custom JS -->
     <script>
-      function showAlert(message, type='success') {
-        const notificationElement = document.getElementById('notification');
-        const notificationMessageElement = document.getElementById('notification-message');
-        
-        notificationMessageElement.textContent = message;
-        notificationElement.classList.remove('alert-success', 'alert-danger');
-        notificationElement.classList.add(`alert-${type}`);
-        notificationElement.style.display = 'block';
-      }
-      
       // Function to handle the favorite button click
       async function handleFavorite(event, albumID) {
         event.preventDefault(); // Prevent the default form submission
@@ -116,23 +161,16 @@
           });
 
           if (response.ok) {
-            showAlert('Album added to favorites successfully!');
+            event.target.style.color = "red";
           } else if (response.status === 409) {
-            showAlert('Album already in favorites.', 'danger');
+            event.target.style.color = "red";
           } else {
-            showAlert('Error while adding album to favorites. Please try again later.', 'danger');
+            console.error('Error while adding track to favorites. Please try again later.');
           }
         } catch (error) {
-          console.error('Error while adding album to favorites:', error);
-          showAlert('Error while adding album to favorites. Please try again later.', 'danger');
+          console.error('Error while adding track to favorites:', error);
         }
       }
     </script>
-   
-      </div>
-    </div>
   </body>
 </html>
-
-
-
