@@ -94,6 +94,17 @@
       </div>
     </nav>
 
+
+    <!-- Search bar -->
+    <form action="/album/search" method="post">
+      <div class="form-group m-3 p-5">
+        <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for a song">
+        <div class="form-group">
+          <input type="submit" value="submit" class="btn btn-primary btn-block"/>
+        </div>
+      </div>
+    </form>
+
 <!-- Search Form -->
 <form action="/album/search" method="post">
   <div class="form-group m-3 p-5">
@@ -108,6 +119,7 @@
 <% if (albums.length === 0) { %>
   <div class="text-center error mb-4">No album matches.</div>
  <% } %>
+
 
 
 
@@ -143,7 +155,7 @@
                     <% }) %>
                   </ul>
                 </div>
-                <form action="/album/favorites" method="POST" class="mt-3">
+                <form action="/album" method="POST" class="mt-3">
                   <input name="albumID"  type= "hidden" value="<%= album.dataValues.id %>">
                   <input type="hidden" name="profileID" value="<%= userProfileID %>"> <!-- Replace with the actual user's profile ID -->
                   <button type="submit" class="btn favorite-button">

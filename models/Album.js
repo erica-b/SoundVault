@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'albumID',
         otherKey: 'profileID',
       });
-      Album.belongsTo(models.Artist, { foreignKey: 'id' })
       Album.hasMany(models.Song, { foreignKey: 'albumID' })
     }
   }
