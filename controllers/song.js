@@ -1,6 +1,7 @@
 const { Profile, Song, Album } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 
 
 const songGet = async (req, res) => {
@@ -13,10 +14,12 @@ const songGet = async (req, res) => {
   }
 
 
+/* The songPost renders all songs that contain the search bar results. */
+//  More info: The iLike here allows us to search without case sensitive. The percentage signs plus textbox will bring up any song with the word you type in. The percentage signs say 'I dont care whats on the left or right of it' in SQL queries. Ex: You type in bomb and get Bombtrack, Car Bomb, Bombs Away, etc.
   const songPost = async (req, res) => {
     const { textbox } = req.body;
     const songs = await Song.findAll({where: {
-      songName: textbox
+      songName: {[Op.iLike]:'%' + textbox + '%'}
     },
     include: {
       model: Album,
