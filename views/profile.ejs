@@ -56,7 +56,7 @@
     </style>
   </head>
   <body>
-    <%- include('partials/header.ejs') %>
+    <%- include('partials/loginHeader.ejs') %>
     <div class="container">
       <h1 class="text-center"><%= title %></h1>
       <img src="<%= profileImage %>" class="profile-image" alt="Profile Image">
@@ -66,8 +66,8 @@
         <p><strong>Email:</strong> <%= email %></p>
       </div>
       <div class="profile-buttons">
-        <button onclick="window.location.href = '/profiles/edit/3';">Edit</button>
-        <button onclick="window.location.href = '/profiles/delete/3';">Delete</button>
+        <button onclick="window.location.href = '/profiles/edit/:id';">Edit</button>
+        <button onclick="window.location.href = '/profiles/delete/:id';">Delete</button>
       </div>
     </div>
   </body>

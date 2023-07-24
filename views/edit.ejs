@@ -76,7 +76,7 @@
 <body>
   <h1><%= title %></h1>
   <div class="container form-container">
-    <form action="/edit/<%= id %>" method="post">
+    <form action="/profiles/edit/<%= id %>" method="post">
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" name="firstName" value="<%= firstName %>"><br><br>
       <label for="lastName">Last Name:</label>
@@ -86,7 +86,7 @@
       <input type="submit" value="Submit">
     </form>
     <div class="go-back-container">
-      <button class="go-back-btn" onclick="window.location.href = '/profiles/user/3';">Go Back</button>
+      <button class="go-back-btn" onclick="window.location.href = '/profiles/user/<%= id %>'">Go Back</button>
     </div>
   </div>
 </body>

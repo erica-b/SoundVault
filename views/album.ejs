@@ -72,7 +72,7 @@
     </style>
   </head>
   <body>
-    <%- include('partials/header.ejs') %>
+    <%- include('partials/loginHeader.ejs') %>
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -95,15 +95,7 @@
     </nav>
 
 
-    <!-- Search bar -->
-    <form action="/album/search" method="post">
-      <div class="form-group m-3 p-5">
-        <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for a song">
-        <div class="form-group">
-          <input type="submit" value="submit" class="btn btn-primary btn-block"/>
-        </div>
-      </div>
-    </form>
+    
 
 <!-- Search Form -->
 <form action="/album/search" method="post">
@@ -122,7 +114,45 @@
 
 
 
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Album successfully added to favorites!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Album already in favorites.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <!-- Album Cards -->
@@ -155,7 +185,7 @@
                     <% }) %>
                   </ul>
                 </div>
-                <form action="/album" method="POST" class="mt-3">
+                <form action="/album" method="POST" class="mt-3" onsubmit="event.preventDefault(); handleFavorite(this)">
                   <input name="albumID"  type= "hidden" value="<%= album.dataValues.id %>">
                   <input type="hidden" name="profileID" value="<%= userProfileID %>"> <!-- Replace with the actual user's profile ID -->
                   <button type="submit" class="btn favorite-button">
@@ -169,38 +199,35 @@
       </div>
     </div>
 
-    <!-- Footer -->
-  
-
     <!-- Include the Bootstrap JS and Popper.js library -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-
-    <!-- Include your custom JS -->
-    <!-- Custom JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    
     <script>
-      // Function to handle the favorite button click
-      async function handleFavorite(event, albumID) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const form = document.getElementById(`favoriteForm${albumID}`);
-
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-          });
-
-          if (response.ok) {
-            event.target.style.color = "red";
-          } else if (response.status === 409) {
-            event.target.style.color = "red";
+      function handleFavorite(form) {
+        const formData = new FormData(form);
+        const albumID = formData.get("albumID");
+        const profileID = formData.get("profileID");
+        
+        fetch('/album', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ albumID, profileID }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            $('#errorModal').modal('show');
           } else {
-            console.error('Error while adding track to favorites. Please try again later.');
+            $('#successModal').modal('show');
           }
-        } catch (error) {
-          console.error('Error while adding track to favorites:', error);
-        }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
       }
     </script>
   </body>

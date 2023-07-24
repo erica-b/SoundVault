@@ -97,7 +97,7 @@ const loginPost = async (req, res) => {
         const token = jwt.sign({foo: profileID}, 'superSecretPrivateKey', {expiresIn: "1h"})
         console.log(token)
         res.cookie("token", token)
-        res.redirect("/");
+        res.redirect("/album");
       } else {
         res.render("login", {
           title: "Login",
