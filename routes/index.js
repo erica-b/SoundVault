@@ -19,7 +19,10 @@ const songController = require('../controllers/song');
 
  /* Album Router */
  // get album ejs template at this route url
- router.get('/album', authCheck.authCheck ,albumController.albumGet)
+ router.get('/album', authCheck.authCheck, albumController.albumGet)
+// post album from search bar
+ router.post('/album/search', authCheck.authCheck, albumController.albumPost)
+
 
  router.post('/album',authCheck.authCheck,albumController.albumPost)
 
@@ -27,6 +30,10 @@ const songController = require('../controllers/song');
 
 router.get('/album/favorites', authCheck.authCheck ,albumController.albumFavsGet)
  
+
+router.get('/album/favorites', authCheck.authCheck, albumController.albumFavsGet)
+ router.post('/album/favorites', albumController.albumFavsPost)
+
 
  /* Artist Router */
  // get artist ejs template at this route url
@@ -41,7 +48,11 @@ router.get('/album/favorites', authCheck.authCheck ,albumController.albumFavsGet
  // get song ejs template at this route url
  router.get('/song', authCheck.authCheck, songController.songGet)
  // post song from search bar
+
  router.post('/song/search', authCheck.authCheck ,songController.songPost)
+
+ router.post('/song/search', authCheck.authCheck, songController.songPost)
+
 
 
 
