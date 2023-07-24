@@ -1,7 +1,7 @@
 const { ProfileAlbum, Album, Profile } = require('../models');
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { Op } = require('sequelize');
 
 
 const albumGet = async (req, res) => {
@@ -10,6 +10,21 @@ const albumGet = async (req, res) => {
       console.log('User Profile ID:', userProfileID);
     res.render('album', {title: "Albums", albums, userProfileID})
   }
+
+  /* The albumPost renders all songs that contain the search bar results. */
+
+  const albumPost = async (req, res) => {
+    const { textbox } = req.body;
+    const albums = await Album.findAll({
+      attributes: { exclude: ['ArtistId'] },
+      where: { albumName: {[Op.iLike]:'%' + textbox + '%'}
+  }})
+  const userProfileID = req.user.id;
+      console.log('User Profile ID:', userProfileID);
+    res.render('album', {title: "Albums", albums, userProfileID})
+  }
+
+
 
   const albumFavsGet = async (req, res) => {
     try {
@@ -105,5 +120,6 @@ const albumGet = async (req, res) => {
 module.exports = {
   albumGet,
   albumFavsPost,
-  albumFavsGet
+  albumFavsGet,
+  albumPost
 }
