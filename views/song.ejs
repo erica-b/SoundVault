@@ -12,12 +12,12 @@
       /* Dark Theme Styles */
       body {
         font-family: 'Roboto', sans-serif;
-        background-color: #1e2022;
+        background-color: #212529;
         color: #f8f9fa;
       }
       /* Dark Navbar */
       .navbar {
-        background-color: #343a40;
+        background-color: #212529;
       }
       .navbar .navbar-brand,
       .navbar .nav-link {
@@ -25,28 +25,24 @@
       }
       /* Dark Cards */
       .card {
-        border: 1px solid #444;
-        background-color: #343a40;
+        background-color: #464646;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
         color: #f8f9fa;
       }
       /* Song Titles with warmer color */
       h5 {
-        color: #fd7e14; /* Bootstrap's Orange */
+        color: #fdab68; /* Bootstrap's Orange */
         padding: 10px;
-        border: 1px solid #fd7e14; /* Bootstrap's Orange */
+        border: 0px solid #f1a86b; /* Bootstrap's Orange */
         border-radius: 5px;
         text-align: center;
-        font-weight: bold;
       }
       /* Genre with cooler color */
       p {
-        color: #17a2b8; /* Bootstrap's Cyan */
+        color: #bda4ea; /* Bootstrap's Cyan */
         padding: 5px;
-        border: 1px dashed #17a2b8; /* Bootstrap's Cyan */
         border-radius: 5px;
         text-align: center;
-        font-weight: bold;
       }
       /* Rectangular Album Covers with rounded corners */
       .img-container {
@@ -95,15 +91,28 @@
 </div> -->
 
 
-<!-- Search Form -->
-<form action="/song/search" method="post">
+<!-- Original Functional Search Form -->
+<!-- <form action="/song/search" method="post">
   <div class="form-group m-3 p-5">
     <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for a song">
     <div class="form-group">
       <input type="submit" value="submit" class="btn btn-secondary btn"/>
     </div>
   </div>
-</form>
+</form> -->
+
+<!--  Search Form - Updated Design -->
+<div class="m-5 p-4">
+  <form action="/song/search" method="post">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" name="textbox" placeholder="Search for a song" aria-label="Search for a song" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" value="submit" type="submit">Search</button>
+    </div>
+  </div>
+  </form>
+  </div>
+  
 
 <!-- Search Form Error Message (the song name was logging as an empty array in the console log)-->
 <% if (songs.length === 0) { %>

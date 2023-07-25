@@ -12,8 +12,13 @@
       /* Existing styles */
       body {
         background-color: #212529;
-        color: #e6ac82;
+        color: #ffffff;
       }
+
+      .releaseYear {
+        color: #518d73;
+      }
+
       .card {
         border-radius: 15px;
         border: none;
@@ -40,12 +45,12 @@
         color: #ffffff;;
       }
       .card-subtitle {
-        border: 2px solid #e6ac82;;
+        border: 2px solid #ffffff;;
         padding: 10px;
         margin: 15px;
         border-radius: 15px;
         text-align: center;
-        background-color: #e6ac82;;
+        background-color: #ffffff;;
         color: #212529;
       }
       .card-text {
@@ -97,15 +102,27 @@
 
     
 
-<!-- Search Form -->
+<!-- Original Functional Search Form
 <form action="/album/search" method="post">
-  <div class="form-group m-3 p-5 ul" style="list-style: none;">
-    <li><input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for an album"></li>
-    <li><div class="form-group">
-      <input type="submit" value="submit" class="btn btn-secondary "/>
-    </div></li>
+  <div class="form-group m-3 p-5">
+    <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for an album">
+    <input type="submit" value="submit" class="btn btn-secondary "/>
+   <div class="form-group">
+    </div>
   </div>
+</form> -->
+
+<!--  Search Form - Updated Design -->
+<div class="m-5 p-4">
+<form action="/album/search" method="post">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" name="textbox" placeholder="Search for an album" aria-label="Search for an album" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" value="submit" type="submit">Search</button>
+  </div>
+</div>
 </form>
+</div>
 
 <!-- Search Form Error Message (the album name was logging as an empty array in the console log)-->
 <% if (albums.length === 0) { %>
@@ -168,7 +185,7 @@
               <div class="card-body">
                 <h5 class="card-title mb-3"><%= album.dataValues.albumName %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Genre: <%= album.dataValues.genre %></h6>
-                <p class="card-text">Release Year: <%= album.dataValues.albumDate %></p>
+                <p class="card-text releaseYear">Release Year: <%= album.dataValues.albumDate %></p>
 
                 <!-- Collapsible Track List -->
                 <button class="btn favorite-button" type="button" data-bs-toggle="collapse" data-bs-target="#trackList<%= album.dataValues.id %>" aria-expanded="false" aria-controls="trackList<%= album.dataValues.id %>">
