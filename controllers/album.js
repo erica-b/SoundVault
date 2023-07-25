@@ -17,7 +17,7 @@ const albumGet = async (req, res) => {
     const albums = await Album.findAll({where: {
       albumName: {[Op.iLike]:'%' + textbox + '%'}
     }})
-    res.render('album', {title: "My Favorite Songs", albums, userProfileID})
+    res.render('album', {title: "Albums", albums, userProfileID})
   }
   
   const albumPost = async (req, res) => {

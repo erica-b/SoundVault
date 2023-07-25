@@ -66,10 +66,10 @@
   </head>
   <body>
     <%- include('partials/loginHeader.ejs') %>
-    <!-- Navbar -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">My Music App</a>
+        <a class="navbar-brand" href="#">Sound Vault</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,20 +79,12 @@
               <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/album/favorites">Favorites</a>
+              <a class="nav-link" href="/song/favorites">Favorites</a>
             </li>
           </ul>
         </div>
       </div>
-    </nav> -->
-
-<!-- Song Search Bar from Bootstrap -->
-<!-- <div class="input-group m-3 p-5">
-  <input type="text" class="form-control" id="textBox" placeholder="Search for a song" aria-label="Search for a song" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" id="songSearchBarButton" type="button">Search</button>
-  </div>
-</div> -->
+    </nav>
 
 
 <!-- Search Form -->
@@ -111,16 +103,53 @@
  <% } %>
 
 
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Song successfully added to favorites!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Song already in favorites.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- </script> -->
 
 
     <!-- Song Cards -->
     <div class="container mt-5">
       <h1 class="text-center mb-4"><%= title %></h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% songs.forEach(song => { %>
+        <% songs.forEach((song, index) => { %>
           <div class="col">
             <div class="card shadow-sm h-100">
               <div class="card-body">
@@ -129,12 +158,56 @@
                 <div class="img-container">
                   <img src="<%= song.Album.albumCover || 'https://placekitten.com/200/200' %>" class="card-img-top" alt="Album Cover">
                 </div>
+                <form class="favoriteForm mt-3">
+                  <input name="songID"  type= "hidden" value="<%= song.dataValues.id %>">
+                  <input type="hidden" name="profileID" value="<%= userProfileID %>"> <!-- Replace with the actual user's profile ID -->
+                  <button type="button" class="btn favorite-button">
+                    <i class="fas fa-heart"></i> Favorite
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         <% }); %>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    
+    <script>
+      document.querySelectorAll('.favorite-button').forEach(item => {
+        item.addEventListener('click', handleFavorite);
+      });
+    
+      function handleFavorite(event) {
+        event.preventDefault();
+    
+        const form = event.target.parentElement;
+        const formData = new FormData(form);
+        const songID = formData.get("songID");
+        const profileID = formData.get("profileID");
+        
+        fetch('/song', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ songID, profileID }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            $('#errorModal').modal('show');
+          } else {
+            $('#successModal').modal('show');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+    </script>
   </body>
 </html>
 
