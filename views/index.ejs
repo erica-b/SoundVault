@@ -13,13 +13,13 @@
 
   <style>
     body {
-      background-color: #1a1a1a;
+      background-color: #312d2a;
       color: #fff;
       font-family: 'Arial', sans-serif;
     }
 
     .jumbotron {
-      background-color: #333;
+      background-color: #312d2a;
       color: #fff;
       padding: 4rem 2rem;
       text-align: center;
@@ -27,12 +27,13 @@
 
     .jumbotron h1 {
       font-size: 4rem;
-      font-weight: bold;
-      color: #ff6600;
+
+      color: #e6ac82;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .jumbotron p {
+
       font-size: 1.5rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
@@ -49,7 +50,7 @@
     }
 
     .card .card-title {
-      color: #ff6600;
+      color: #ffe3d0;
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -59,32 +60,39 @@
     }
 
     .card .fa-4x {
-      color: #ff6600;
+      color: #ffffff;
+
     }
   </style>
 </head>
 <body>
   <%- include('partials/header.ejs') %>
 
+  <!--  Title idea from AI: "SoundVault: Your Digital Album Sanctuary" -->
+  <!-- Cant get to work: <img src="../images/recordplayerJPEG.jpg" alt="record player"> -->
+
+
   <div class="jumbotron jumbotron-fluid text-center mb-0">
     <div class="container">
-      <h1 class="display-4">Welcome to <span style="color: #f96808;"><%= title %></span></h1>
-      <p class="lead">Discover and save your favorite songs, artists, and albums!</p>
+      <h1 class="display-4"style= "color: #e6ac82;">Welcome to <span style="color: #e6ac82;"><%= title %></span></h1>
+      <p class="lead p-3">Discover and save your favorite songs, artists, and albums!</p>
       <div class="d-flex justify-content-center">
-        <a href="/profiles" class="btn btn-lg btn-light mr-2">Create an Account</a>
-        <a href="/profiles/login" class="btn btn-lg btn-light">Log In</a>
+        <div class="ul p-3" style="list-style: none;">
+        <li class="mb-3"><a href="/profiles" class="btn btn-lg btn-secondary mr-2">Create An Account</a> </li>
+        <li><a href="/profiles/login" class="btn btn-lg btn-secondary">Log In</a></li>
+      </div>
       </div>
     </div>
   </div>
 
-  <div class="container mt-5">
+  <div class="container mt-3">
     <div class="row">
       <div class="col-md-4">
         <div class="card mb-3" id="songCardHomePage">
           <div class="card-body text-center">
             <i class="fas fa-music fa-4x mb-3"></i>
-            <h5 class="card-title">Discover Songs</h5>
-            <p class="card-text">Explore a vast collection of songs from various genres and artists.</p>
+            <h5 class="card-title">Discover Music</h5>
+            <p class="card-text">Explore a vast collection of music from various genres and artists.</p>
           </div>
         </div>
       </div>
@@ -93,7 +101,7 @@
           <div class="card-body text-center">
             <i class="fas fa-user fa-4x mb-3"></i>
             <h5 class="card-title">Create Your Profile</h5>
-            <p class="card-text">Sign up and create a personalized profile to keep track of your favorites.</p>
+            <p class="card-text">Sign up and create your personalized SoundVault to keep track of your favorites.</p>
           </div>
         </div>
       </div>
