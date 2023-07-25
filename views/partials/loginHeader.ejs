@@ -1,0 +1,19 @@
+<header class="d-flex justify-content-center py-3" style="background-color: #2d2d2d;">
+    <ul class="nav nav-pills" style="background-color: #2d2d2d;">
+      <li class="nav-item <%= title === 'Home' ? 'active' : '' %>">
+        <a href="/" class="nav-link <%= title === 'Home' ? 'active' : '' %>" style="color: #fff;" aria-current="page">Home</a>
+      </li>
+  
+      <li class="nav-item <%= title === 'Albums' ? 'active' : '' %>">
+        <a href="/album" class="nav-link <%= title === 'Albums' ? 'active' : '' %>" style="color: #fff;">Albums</a>
+      </li>
+  
+      <li class="nav-item <%= title === 'Songs' ? 'active' : '' %>">
+        <a href="/song" class="nav-link <%= title === 'Songs' ? 'active' : '' %>" style="color: #fff;">Songs</a>
+      </li>
+  
+      <li class="nav-item <%= title === 'Login' ? 'active' : '' %>">
+        <a href="/profiles/user/:id" class="nav-link <%= title === 'My Profile' ? 'active' : '' %>" style="color: #fff;">My Profile</a>
+      </li>
+    </ul>
+  </header>

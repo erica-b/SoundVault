@@ -24,7 +24,7 @@ router.post('/', profileController.registerUser)
 // Running a check to see if they have the jwt token before they are able to view the account
 
 // Still need to do somethign with the route so that the appropriate id is passed to the url that matches the user that was logged in
-router.get("/user/:id",findProfile.findProfile , profileController.profileGet)
+router.get("/user/:id",authCheck.authCheck,findProfile.findProfile , profileController.profileGet)
 
 
 
@@ -37,15 +37,17 @@ router.get("/login", profileController.loginGet)
 
 
   /* GET - load a template to EDIT a user */
-router.get('/edit/:id', editController.editUserByID);
+router.get('/edit/:id',authCheck.authCheck,findProfile.findProfile, editController.editUserByID);
 
 
 /* Edit the user */
-router.post('/edit/:id', editController.postEditUserByID);
+router.post('/edit/:id', authCheck.authCheck,findProfile.findProfile,editController.postEditUserByID);
 
 
 /* Delete the user route */
-router.get("/delete/:id", deleteController.deleteUserByID);
+router.get("/delete/:id", authCheck.authCheck,findProfile.findProfile,deleteController.deleteUserByID);
+
+router.post("/delete/:id", authCheck.authCheck,deleteController.deleteUserPost)
 
 
 module.exports = router;
