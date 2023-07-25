@@ -33,6 +33,9 @@ module.exports = {
       artistID: {
         type: Sequelize.INTEGER,
       },
+      songID: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

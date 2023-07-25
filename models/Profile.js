@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'albumID',
       });
      Profile.belongsToMany (models.Artist, {through: 'ProfileArtist'})
-     Profile.belongsToMany (models.Song, {through: 'ProfileSong'})
+     Profile.belongsToMany (models.Song, {
+      as: 'favoriteSongs',
+      through: 'ProfileSongs',
+      foreignKey: 'profileID',
+      otherKey: 'songID'})
     }
   }
  Profile.init({
@@ -35,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     email: DataTypes.STRING,
     profileImage: DataTypes.STRING,
+    songID: DataTypes.INTEGER,
     albumID: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
       references: {
