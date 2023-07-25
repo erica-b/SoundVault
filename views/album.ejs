@@ -12,7 +12,7 @@
       /* Existing styles */
       body {
         background-color: #212529;
-        color: #fd7e14;
+        color: #e6ac82;
       }
       .card {
         border-radius: 15px;
@@ -21,6 +21,7 @@
       .img-container {
         display: flex;
         justify-content: center;
+        padding-top: 30px;
       }
       .card-img-top {
         height: 150px;
@@ -30,22 +31,21 @@
         margin: auto;
       }
       .card-title {
-        border: 2px solid #fd7e14;
         padding: 10px;
         margin: 15px;
         border-radius: 15px;
         text-align: center;
         font-size: 20px;
         background-color: #212529;
-        color: #fd7e14;
+        color: #ffffff;;
       }
       .card-subtitle {
-        border: 2px solid #fd7e14;
+        border: 2px solid #e6ac82;;
         padding: 10px;
         margin: 15px;
         border-radius: 15px;
         text-align: center;
-        background-color: #fd7e14;
+        background-color: #e6ac82;;
         color: #212529;
       }
       .card-text {
@@ -55,11 +55,11 @@
         width: 100%;
         background-color: #343a40;
         color: #f8f9fa;
-        border-color: #fd7e14;
+        border-color: #f9bd93;
         transition: all 0.3s ease;
       }
       .favorite-button:hover, .favorite-button:active {
-        background-color: #fd7e14;
+        background-color: #e6ac82;;
         color: #212529;
       }
       .track-list {
@@ -75,7 +75,7 @@
     <%- include('partials/loginHeader.ejs') %>
     
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="#">My Music App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,18 +92,18 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
 
     
 
 <!-- Search Form -->
 <form action="/album/search" method="post">
-  <div class="form-group m-3 p-5">
-    <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for an album">
-    <div class="form-group">
-      <input type="submit" value="submit" class="btn btn-primary btn-block"/>
-    </div>
+  <div class="form-group m-3 p-5 ul" style="list-style: none;">
+    <li><input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for an album"></li>
+    <li><div class="form-group">
+      <input type="submit" value="submit" class="btn btn-secondary "/>
+    </div></li>
   </div>
 </form>
 

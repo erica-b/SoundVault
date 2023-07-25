@@ -1,5 +1,5 @@
-<header class="d-flex justify-content-center py-3" style="background-color: #2d2d2d;">
-  <ul class="nav nav-pills" style="background-color: #2d2d2d;">
+<header class="d-flex justify-content-center py-3" style="background-color: #312d2a;">
+  <ul class="nav nav-pills" style="background-color: #312d2a;">
     <li class="nav-item <%= title === 'Home' ? 'active' : '' %>">
       <a href="/" class="nav-link <%= title === 'Home' ? 'active' : '' %>" style="color: #fff;" aria-current="page">Home</a>
     </li>
@@ -12,8 +12,14 @@
       <a href="/song" class="nav-link <%= title === 'Songs' ? 'active' : '' %>" style="color: #fff;">Songs</a>
     </li>
 
+
+
+    <li class="nav-item <%= title === 'My Profile' ? 'active' : '' %>">
+      <a href="/profiles/login" class="nav-link <%= title === 'My Profile' ? 'active' : '' %>" style="color: #fff;">My Profile</a>
+
     <li class="nav-item <%= title === 'Login' ? 'active' : '' %>">
       <a href="/profiles/login" class="nav-link <%= title === 'My Profile' ? 'active' : '' %>" style="color: #fff;">Login</a>
+
     </li>
   </ul>
 </header>

@@ -10,7 +10,9 @@ const songGet = async (req, res) => {
     model: Album,
     attributes: ['albumCover', 'genre']
   }})
-    res.render('song', {title: "Available Songs", songs})
+
+    res.render('song', {title: "Songs", songs})
+
   }
 
 
