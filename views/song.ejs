@@ -58,6 +58,21 @@
         height: 100%;
         object-fit: cover; /* Cover the entire div */
       }
+
+      .pagination a {
+      color: #fdab68; /* Bootstrap's Orange */
+      transition: color 0.2s;
+    }
+
+    .pagination a:hover {
+      color: #f8f9fa;
+    }
+
+    .pagination a.active {
+      color: #f8f9fa;
+      font-weight: bold;
+    }
+
     </style>
   </head>
   <body>
@@ -81,17 +96,6 @@
         </div>
       </div>
     </nav>
-
-
-<!-- Original Functional Search Form -->
-<!-- <form action="/song/search" method="post">
-  <div class="form-group m-3 p-5">
-    <input type="text" class="form-control" id="textbox" name="textbox" placeholder="Search for a song">
-    <div class="form-group">
-      <input type="submit" value="submit" class="btn btn-secondary btn"/>
-    </div>
-  </div>
-</form> -->
 
 <!--  Search Form - Updated Design -->
 <div class="m-5 p-4">
@@ -152,7 +156,49 @@
   </div>
 </div>
 
+<!-- This code is here to handle the creation of many pages to help the page load easier -->
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <% if (page > 1) { %>
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First">
+          <span aria-hidden="true">&laquo;&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    <% } %>
 
+    <% totalPages = Math.ceil(count / limit); %>
+    <% for(let i = 1; i <= totalPages; i++) { %>
+      <% if(i == 1 || i == totalPages || (i >= page - 2 && i <= page + 2)) { %>
+        <li class="page-item <% if (page == i) { %>active<% } %>">
+          <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+        </li>
+      <% } else if(i == 2 || i == totalPages - 1) { %>
+        <li class="page-item disabled">
+          <span class="page-link">...</span>
+        </li>
+      <% } %>
+    <% } %>
+
+    <% if (page * limit < count) { %>
+      <li class="page-item">
+        <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page=<%= totalPages %>" aria-label="Last">
+          <span aria-hidden="true">&raquo;&raquo;</span>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+</nav>
 
     <!-- Song Cards -->
     <div class="container mt-5">
@@ -180,6 +226,50 @@
         <% }); %>
       </div>
     </div>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <% if (page > 1) { %>
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        <% } %>
+    
+        <% totalPages = Math.ceil(count / limit); %>
+        <% for(let i = 1; i <= totalPages; i++) { %>
+          <% if(i == 1 || i == totalPages || (i >= page - 2 && i <= page + 2)) { %>
+            <li class="page-item <% if (page == i) { %>active<% } %>">
+              <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+            </li>
+          <% } else if(i == 2 || i == totalPages - 1) { %>
+            <li class="page-item disabled">
+              <span class="page-link">...</span>
+            </li>
+          <% } %>
+        <% } %>
+    
+        <% if (page * limit < count) { %>
+          <li class="page-item">
+            <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page=<%= totalPages %>" aria-label="Last">
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
