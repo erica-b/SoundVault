@@ -5,16 +5,31 @@ const { Op } = require('sequelize');
 
 
 const songGet = async (req, res) => {
-  const userProfileID = req.user.id
-  const songs = await Song.findAll({attributes: { exclude: ['ArtistId', 'songID'] },
-  include: {
-    model: Album,
-    attributes: ['albumCover', 'genre']
-  }})
+  const userProfileID = req.user.id;
+  const limit = 21; // Number of songs displayed per page.
+  const page = req.query.page ? Number(req.query.page) : 1; // Page number, defaults to 1 if not provided.
+  const offset = (page - 1) * limit;
 
-    res.render('song', {title: "Songs", songs, userProfileID})
+  // Fetch the total count of songs and the songs for the current page.
+  const { count, rows: songs } = await Song.findAndCountAll({
+    attributes: { exclude: ['ArtistId', 'songID'] },
+    include: {
+      model: Album,
+      attributes: ['albumCover', 'genre']
+    },
+    offset,
+    limit
+  });
 
-  }
+  res.render('song', {
+    title: "Songs",
+    songs,
+    userProfileID,
+    page,
+    limit,
+    count // Pass the total count to the template.
+  });
+};
 
   const songSearchPost = async (req, res) => { 
     const { textbox } = req.body;

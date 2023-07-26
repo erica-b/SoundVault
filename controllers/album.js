@@ -6,10 +6,21 @@ const jwt = require('jsonwebtoken');
 
 
 const albumGet = async (req, res) => {
-  const albums = await Album.findAll()
+  const page = parseInt(req.query.page) || 1;
+  const limit = 21; // or the number you prefer
+  const offset = (page - 1) * limit;
+
+  const albums = await Album.findAndCountAll({
+    offset: offset,
+    limit: limit
+  });
+
   const userProfileID = req.user.id;
-    res.render('album', {title: "Albums", albums, userProfileID})
-  }
+
+  const totalPages = Math.ceil(albums.count / limit);
+
+  res.render('album', {title: "Albums", albums: albums.rows, userProfileID, page, count: albums.count, limit, totalPages});
+}
 
   const albumSearchPost = async (req, res) => { 
     const { textbox } = req.body;

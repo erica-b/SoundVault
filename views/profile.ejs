@@ -2,13 +2,37 @@
 <html>
   <head>
     <title><%= title %></title>
-    <!-- Include the Bootstrap partial -->
-    <%- include('./partials/bootstrap') %>
+    <!-- Include the Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+
+    <!-- Include the Font Awesome CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <style>
       body {
-        background-color: #f8f8f8;
+        background-color: #212529;
+        color: #fff;
         font-family: 'Arial', sans-serif;
+      }
+
+      .jumbotron {
+        background-color: #212529;
+        color: #fff;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .jumbotron h1 {
+        font-size: 4rem;
+        color: #e6ac82;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .jumbotron p {
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
       }
 
       .container {
@@ -28,10 +52,12 @@
         text-align: center;
         margin-top: 20px;
         font-size: 18px;
+        color: #bda4ea;
       }
 
       .profile-info p {
         margin-bottom: 5px;
+        color: #ccc;
       }
 
       .profile-buttons {
@@ -40,8 +66,7 @@
       }
 
       .profile-buttons button {
-        background-color: #ff6600;
-        color: #fff;
+        background-color: #bda4ea;
         border: none;
         padding: 10px 20px;
         border-radius: 5px;
@@ -51,7 +76,7 @@
       }
 
       .profile-buttons button:hover {
-        background-color: #ff5722;
+        background-color: #a48fd1;
       }
     </style>
   </head>
@@ -64,11 +89,16 @@
         <p><strong>First Name:</strong> <%= firstName %></p>
         <p><strong>Last Name:</strong> <%= lastName %></p>
         <p><strong>Email:</strong> <%= email %></p>
+        <p><strong>About Me:</strong> </p>  
+        <p><strong>Favorite Music:</strong> </p>  
       </div>
       <div class="profile-buttons">
         <button onclick="window.location.href = '/profiles/edit/:id';">Edit</button>
         <button onclick="window.location.href = '/profiles/delete/:id';">Delete</button>
       </div>
     </div>
+
+    <!-- Include the Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
