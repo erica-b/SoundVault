@@ -11,10 +11,10 @@ const dbHost = process.env.DB_HOST;
 const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     host: dbHost,
     dialect: 'postgres',
-    ssl: true, 
-  dialectOptions: {
-    ssl: true
-  },
+    ssl: true,
+    dialectOptions: {
+      "ssl": {"require":true }
+    }
   });
   
   module.exports = sequelize;
