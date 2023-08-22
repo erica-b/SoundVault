@@ -11,12 +11,10 @@ const dbHost = process.env.DB_HOST;
 const sequelize = new Sequelize(dbName, dbUser, dbPass, {
     host: dbHost,
     dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true, // This will help you. But you will see nwe error
-        rejectUnauthorized: false // This line will fix new error
-      }
-    },
+    ssl: true, 
+  dialectOptions: {
+    ssl: true
+  },
   });
   
   module.exports = sequelize;
