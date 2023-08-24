@@ -1,15 +1,16 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const dbURL = process.env.DB_URL;
+const databaseURL = process.env.DATABASE_URL || `postgres://localhost:5433/${databaseName}`;
 
-const sequelize = new Sequelize(dbURL, {
+const sequelize = new Sequelize(databaseURL, {
+  logging: false,
   dialect: 'postgres',
   dialectOptions: {
-    ssl: {
-      require: true, // This is the key line for enforcing SSL
-      rejectUnauthorized: false // Disable validation of the SSL certificate
-    }
+    ssl: process.env.DATABASE_URL ? {
+      require: true,
+      rejectUnauthorized: false
+    } : false
   }
 });
 
