@@ -13,6 +13,7 @@ const sequelize = new Sequelize(dbURL, {
           require: true,
           rejectUnauthorized: false // You might need to set this to true depending on your PostgreSQL server setup
       }
+      
   }
 });
 
