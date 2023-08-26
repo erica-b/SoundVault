@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "sufdxojz",
-    "password": "yF9ZmfMfLbKMetDBSPa5x1kX7xZA1WtB",
+    "username": "sufdxojz_user",
+    "password": "3iXNpKeIIFm18aNBoLMle4liP89TyNWC",
     "database": "sufdxojz",
-    "host": "rajje.db.elephantsql.com",
+    "host": "dpg-cj1hafh5rnuhn3kb2f40-a",
     "dialect": "postgres"
   },
   "test": {
-    "username": "sufdxojz",
-    "password": "yF9ZmfMfLbKMetDBSPa5x1kX7xZA1WtB",
-    "database": "database_test",
-    "host": "rajje.db.elephantsql.com",
+    "username": "sufdxojz_user",
+    "password": "3iXNpKeIIFm18aNBoLMle4liP89TyNWC",
+    "database": "sufdxojz",
+    "host": "dpg-cj1hafh5rnuhn3kb2f40-a",
     "dialect": "postgres"
   },
   "production": {
-    "username": "sufdxojz",
-    "password": "yF9ZmfMfLbKMetDBSPa5x1kX7xZA1WtB",
-    "database": "database_production",
-    "host": "rajje.db.elephantsql.com",
+    "username": "sufdxojz_user",
+    "password": "3iXNpKeIIFm18aNBoLMle4liP89TyNWC",
+    "database": "sufdxojz",
+    "host": "dpg-cj1hafh5rnuhn3kb2f40-a",
     "dialect": "postgres"
   }
 }
