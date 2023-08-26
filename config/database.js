@@ -5,16 +5,15 @@ require('dotenv').config()
 
 const dbURL = process.env.DB_URL;
 
+const sequelize = new Sequelize(dbURL);
 
-const sequelize = new Sequelize(process.env.DB_URL, {
-  dialect: 'postgres',
-  dialectOptions: {
-      ssl: {
-          require: true,
-          rejectUnauthorized: false // You might need to set this to true depending on your PostgreSQL server setup
-      }
-
-  }
-});
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Database connection has been established successfully.');
+  })
+  .catch((error) => {
+    console.error('Unable to connect to the database:', error);
+  });
 
 module.exports = sequelize;
