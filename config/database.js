@@ -15,3 +15,5 @@ const sequelize = new Sequelize(dbURL, {
       }
   }
 });
+
+module.exports = sequelize;
